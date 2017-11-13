@@ -3,12 +3,28 @@
   <head>
     <title>Eyap</title>
     <%= csrf_meta_tags %>
-
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
   </head>
 
   <body>
+
+    <nav class="navbar navbar-default navbar-fixed-top">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <a><%= link_to "Proyectos", projects_path, method: :get, class: 'navbar-brand' %></a>
+        </div>
+        <ul class="nav navbar-nav navbar-right">
+          <% if current_user %>
+            <li class="text-center"><a>Hola <%= current_user.email %></a></li>
+            <%= link_to "Editar Perfil", edit_user_registration_path, class: 'btn btn-primary navbar-btn' %>
+            <%= link_to "Log out", destroy_user_session_path, method: :delete, class: 'btn btn-primary navbar-btn' %>
+          <% else %>
+            <%= link_to "Log in", new_user_session_path, class: 'btn btn-primary navbar-btn margin-right', method: :get %>
+          <% end %>
+      </div>
+    </nav>
     <%= yield %>
     <p class="notice"><%= notice %></p>
     <p class="alert"><%= alert %></p>

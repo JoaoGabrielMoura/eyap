@@ -1,14 +1,35 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <strong>Name:</strong>
+  <strong>Nombre:</strong>
   <%= @project.name %>
 </p>
 
 <p>
-  <strong>Description:</strong>
+  <strong>Descripción:</strong>
+
   <%= @project.description %>
 </p>
 
-<%= link_to 'Edit', edit_project_path(@project) %> |
-<%= link_to 'Back', projects_path %>
+<table>
+  <thead>
+    <tr>
+      <th>Nombre</th>
+      <th>Valor</th>
+      <th>Peso Total</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @project.project_criterium.each do |pc| %>
+      <tr>
+        <td><%= pc.name %></td>
+        <td><%= pc.value %></td>
+        <td><%= pc.weight %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= link_to 'Editar', edit_project_path(@project) %> |
+<%= link_to 'Regresar', projects_path %>
