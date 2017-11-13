@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Project Criteria</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Value</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @project_criteria.each do |project_criterium| %>
+      <tr>
+        <td><%= project_criterium.name %></td>
+        <td><%= project_criterium.value %></td>
+        <td><%= link_to 'Show', project_criterium %></td>
+        <td><%= link_to 'Edit', edit_project_criterium_path(project_criterium) %></td>
+        <td><%= link_to 'Destroy', project_criterium, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Project Criterium', new_project_criterium_path %>

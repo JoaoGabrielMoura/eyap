@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @project_criterium.name %>
+</p>
+
+<p>
+  <strong>Value:</strong>
+  <%= @project_criterium.value %>
+</p>
+
+<%= link_to 'Edit', edit_project_criterium_path(@project_criterium) %> |
+<%= link_to 'Back', project_criteria_path %>
