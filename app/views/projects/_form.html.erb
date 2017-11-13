@@ -21,7 +21,7 @@
     <%= form.text_field :description, id: :project_description %>
   </div>
 
-  <%= form.fields_for :project_criteria do |pc_form| %>
+  <%= form.fields_for :project_criterium do |pc_form| %>
     <div class ="field">
       <%= render 'project_criterium_fields', f: pc_form %>  
     </div>
