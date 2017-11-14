@@ -1,5 +1,13 @@
-<div class ="field">
-    <%= f.text_field :name, placeholder: "Criterio" %>
-    <%= f.text_field :value, placeholder: "Valor" %>
-    <%= f.text_field :weight, placeholder: "Peso" %>
+<div class="row">
+    <div class ="form-group">
+        <div class="col-sm-4">
+            <%= f.text_field :name, placeholder: "Criterio", class: "form-control" %>
+        </div>
+        <div class="col-sm-4">
+            <%= f.text_field :value, placeholder: "Valor", class: "form-control"  %>
+        </div>
+        <div class="col-sm-4">
+            <%= f.text_field :weight, placeholder: "Peso", class: "form-control"  %>
+        </div>
+    </div>
 </div>
