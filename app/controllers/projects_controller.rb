@@ -5,7 +5,7 @@ class ProjectsController < ApplicationController
   # GET /projects
   # GET /projects.json
   def index
-    @projects = Project.joins(:project_criterium).select('projects.*, sum(weight) as total').group(:project_id).order('total DESC')
+    @projects = Project.joins(:project_criterium).select('projects.name, projects.description, projects.id, sum(weight) as total').group('projects.name, projects.description, projects.id').order('total DESC')
   end
 
   # GET /projects/1
