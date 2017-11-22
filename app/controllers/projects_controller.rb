@@ -1,11 +1,11 @@
 class ProjectsController < ApplicationController
-  before_action :set_project, only: [:show, :edit, :update, :destroy]
+  before_action :set_project, only: [:show, :edit, :update, :destroy, :select, :deselect]
   before_action :authenticate_user!  
 
   # GET /projects
   # GET /projects.json
   def index
-    @projects = Project.joins(:project_criterium).select('projects.name, projects.description, projects.id, sum(weight) as total').group('projects.name, projects.description, projects.id').order('total DESC')
+    @projects = Project.joins(:project_criterium).select('projects.name, projects.description, projects.id, projects.confirmed, sum(weight) as total').group('projects.name, projects.description, projects.id').order('total DESC')
   end
 
   # GET /projects/1
@@ -29,7 +29,7 @@ class ProjectsController < ApplicationController
 
     respond_to do |format|
       if @project.save
-        format.html { redirect_to @project, notice: 'Project was successfully created.' }
+        format.html { redirect_to @project, notice: 'Se creó el proyecto éxito.' }
         format.json { render :show, status: :created, location: @project }
       else
         format.html { render :new }
@@ -43,7 +43,7 @@ class ProjectsController < ApplicationController
   def update
     respond_to do |format|
       if @project.update(project_params)
-        format.html { redirect_to @project, notice: 'Project was successfully updated.' }
+        format.html { redirect_to @project, notice: 'Se actualizó el proyecto con éxito.' }
         format.json { render :show, status: :ok, location: @project }
       else
         format.html { render :edit }
@@ -57,7 +57,23 @@ class ProjectsController < ApplicationController
   def destroy
     @project.destroy
     respond_to do |format|
-      format.html { redirect_to projects_url, notice: 'Project was successfully destroyed.' }
+      format.html { redirect_to projects_url, notice: 'Se borró el proyecto con éxito.' }
+      format.json { head :no_content }
+    end
+  end
+
+  def select
+    @project.update_attribute(:confirmed, true)
+    respond_to do |format|
+      format.html { redirect_to projects_url, notice: 'Se seleccionó el proyecto con éxito.' }
+      format.json { head :no_content }
+    end
+  end
+
+  def deselect
+    @project.update_attribute(:confirmed, false)
+    respond_to do |format|
+      format.html { redirect_to projects_url, notice: 'Se deseleccionó el proyecto con éxito.' }
       format.json { head :no_content }
     end
   end

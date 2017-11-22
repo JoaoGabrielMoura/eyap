@@ -11,6 +11,14 @@
   <%= @project.description %>
 </p>
 
+<p>
+  <% if @project.confirmed %>
+    <strong>¡El proyecto ha sido seleccionado!</strong>
+  <% else %>
+    <strong>El proyecto todavia no ha sido seleccionado</strong>
+  <% end %>
+</p>
+
 <table class="table">
   <thead>
     <tr>
@@ -26,6 +34,7 @@
         <td><%= pc.name %></td>
         <td><%= pc.value %></td>
         <td><%= pc.weight %></td>
+
       </tr>
     <% end %>
   </tbody>
