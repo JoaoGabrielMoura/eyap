@@ -18,6 +18,8 @@
         <ul class="nav navbar-nav navbar-right">
           <% if current_user %>
             <li class="text-center"><a>Hola <%= current_user.email %></a></li>
+            <%= link_to "Proyectos Seleccionados", selected_projects_path, class: 'btn btn-primary navbar-btn' %>
+            <%= link_to "Todos Proyectos", projects_path, class: 'btn btn-primary navbar-btn' %>
             <%= link_to "Editar Perfil", edit_user_registration_path, class: 'btn btn-primary navbar-btn' %>
             <%= link_to "Log out", destroy_user_session_path, method: :delete, class: 'btn btn-primary navbar-btn' %>
           <% else %>

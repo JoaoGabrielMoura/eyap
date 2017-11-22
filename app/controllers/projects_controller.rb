@@ -78,6 +78,10 @@ class ProjectsController < ApplicationController
     end
   end
 
+  def selected
+    @projects = Project.joins(:project_criterium).select('projects.name, projects.description, projects.id, projects.confirmed, sum(weight) as total').where(confirmed: true).group('projects.name, projects.description, projects.id').order('total DESC')    
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_project
